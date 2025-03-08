@@ -1,36 +1,21 @@
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches:
-      - main  # Change this if your branch name is different
-
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Change if required
+          node-version: 16
+          cache: 'npm'
+      
+      - name: Change to backend directory
+        run: cd backend
 
       - name: Install dependencies
         run: npm install
-        working-directory: backend  # Add this line
 
-
-      - name: Build the project
+      - name: Build project
         run: npm run build
-        working-directory: backend
-
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages  # The branch where GitHub Pages will be deployed
-          folder: build  # The folder that contains the built files
