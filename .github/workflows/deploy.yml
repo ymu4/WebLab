@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Backend
 
 on:
   push:
@@ -17,24 +17,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-          cache-dependency-path: backend/package-lock.json
 
       - name: Install dependencies
-        run: |
-          cd backend
-          rm -rf node_modules package-lock.json
-          npm install
+        run: cd backend && npm install
 
-      - name: Check if react-scripts exists
-        run: |
-          ls -la backend/node_modules/.bin/
-
-      - name: Fix react-scripts permission issue
-        run: |
-          chmod +x backend/node_modules/.bin/react-scripts
+      - name: Fix react-scripts permission
+        run: chmod +x backend/node_modules/.bin/react-scripts
 
       - name: Build project
-        run: |
-          cd backend
-          npm run build
+        run: cd backend && npm run build
