@@ -23,11 +23,16 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
+          rm -rf node_modules package-lock.json
           npm install
+
+      - name: Check if react-scripts exists
+        run: |
+          ls -la backend/node_modules/.bin/
 
       - name: Fix react-scripts permission issue
         run: |
-          chmod +x node_modules/.bin/react-scripts
+          chmod +x backend/node_modules/.bin/react-scripts
 
       - name: Build project
         run: |
