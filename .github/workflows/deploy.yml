@@ -25,6 +25,10 @@ jobs:
           cd backend
           npm install
 
+      - name: Fix react-scripts permission issue
+        run: |
+          chmod +x node_modules/.bin/react-scripts
+
       - name: Build project
         run: |
           cd backend
