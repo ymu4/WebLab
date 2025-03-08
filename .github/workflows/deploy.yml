@@ -25,6 +25,8 @@ jobs:
 
       - name: Build the project
         run: npm run build
+        working-directory: backend
+
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
