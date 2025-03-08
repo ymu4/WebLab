@@ -20,6 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: backend  # Add this line
+
 
       - name: Build the project
         run: npm run build
